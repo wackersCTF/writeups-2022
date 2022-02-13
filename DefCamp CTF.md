@@ -14,7 +14,33 @@
 | web-intro | Web | Entry Level | 50 | drpain365 |
 | zebra-lib | Misc | Easy | 50 | wyl3waK |
 
+## cant-touch-this
+The Nesteaz company suffered from a security breach. We are low on personnel and we require your help in investigating the events collected from the compromised machine.
 
+Credentials: elastic/k8jTYMCoAqppB
+
+1. Please provide the user account on which malicious actions were executed. (Points: 50)
+2.  We need the IP of the compromised machine (Points: 50)
+3.  The attackers managed to execute some malicious scripts without being detected by our security systems. Can you determine which program was executed? (Points: 50)
+4.  What system management tool did the attacker use in order to launch its program with full privileges? (Points: 50)
+5.  We know that the attacker managed to download an infected executable using a Windows utility. We need that name, please. (Points: 50) (Not solved)
+6.  The attacker managed to give full privileges to his account. We need the code of the event triggered by this action. (Points: 50)
+
+Attachments: 34.141.93.151:32729
+
+### Solution
+
+The website/IP address is Elastic, a multipurpose website used by companies for monitoring, management, etc. We are interested in Elastic Security. We navigate to that dashboard and can choose to show reports/logs of activity. While there is no information available in the last 24 hours, extending the search dates to February 1 shows us numerous events and processes that occured within the past month. We see there is a single host named DESKTOP-IHO95MC. We can access information about it such as its operating system (Windows 10) and its IP address, **192.168.0.108**. It was accessed by multiple users, however one username stands out: **malware_attacker**. Examining the processes and events, we see that **NSudo.exe** was run by malware_attacker several times. Googling it shows that it allows users to run programs with full privileges. We also see that NSudo.exe was used for a file in C:\Users\plant\OneDrive\Desktop\stuff-i-want\ named **Defeat-Defender.bat**. For the last part of the challenge, we notice multiple events that state "Special privileges assigned to new logon." The event code is **4672**. 
+
+This challenge tests one's ability to analyze computer logs. Utilizing filters and identifying suspicious details helps.
+
+Flags: 
+1. malware_attacker
+2. 192.168.0.108
+3. Defeat-Defender.bat
+4. NSudo.exe
+5. Not solved
+6. 4672
 
 ## para-code
 I do not think that this API needs any sort of security testing as it only executes and retrieves the output of ID and PS commands.
