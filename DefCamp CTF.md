@@ -75,9 +75,17 @@ Reading the input part of the code, we see that there is a blacklist preventing 
 With this knowledge, I tried out some basic command injection stuff like l\s or l's' and it printed out that there was a flag.php and a index.php.
 With only 4 letters to type for our command, I knew that opening the flag.php file was an impossibility.
 
+Next, I went to try to exploit the if (False) part to get the $flag variable to show in the source code.
+I knew that the input could only be 4 characters max, so I would have to have at max a 2 character command followed by a space and an asterisk after.
+
+This part wasn't very fun for me, because I had to "bruteforce" through all the 2 characters commands until I found a correct one.
+
+Eventually I got to the command m4 which when doing ```?start=m4 *``` showed the $flag variable in the source code.
 
 Wrapping the flag with CTF{} we get:
 ```CTF{791b21ee6421993a8e25564227a816ee52e48edb437909cba7e1e80c0579b6be}```
+
+## Notes
 
 
 ## this-file-hides-something
