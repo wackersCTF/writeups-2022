@@ -17,7 +17,10 @@ After the tool is setup, we can run the vo.py file using any version of python2 
 First, we want to use the ```imageinfo``` option to find the correct profile.
 ![image]()
 
+We will choose the first profile in the list and use that for our next tests. (Win7SP1x64)
 
+We can extract the lsa secrets now using the ```lsadump``` option.
+![image]()
 
 We get the password:
 ```Str0ngAsAR0ck!```
