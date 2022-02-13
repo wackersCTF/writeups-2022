@@ -82,11 +82,12 @@ This part wasn't very fun for me, because I had to "bruteforce" through all the 
 
 Eventually I got to the command m4 which when doing ```?start=m4 *``` showed the $flag variable in the source code.
 
+Note: Sadly I didn't know what m4 actually did to trigger the if statement to a False and print the flag in the source code, but the m4 command processes macros in FILEs.
+
+Read more at: https://www.commandlinux.com/man-page/man1/m4.1.html
+
 Wrapping the flag with CTF{} we get:
 ```CTF{791b21ee6421993a8e25564227a816ee52e48edb437909cba7e1e80c0579b6be}```
-
-## Notes
-
 
 ## this-file-hides-something
 Description: There is an emergency regarding this file. We need to extract the password ASAP. It's a crash dump, but our tools are not working. Please help us, time is not on our side.
