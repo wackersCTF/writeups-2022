@@ -15,6 +15,8 @@ The download to the tool can be found at https://github.com/volatilityfoundation
 After the tool is setup, we can run the vo.py file using any version of python2 and use the -f option to supply our memory file.
 
 First, we want to use the ```imageinfo``` option to find the correct profile.
+![image]()
+
 
 
 We get the password:
