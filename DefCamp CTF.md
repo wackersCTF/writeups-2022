@@ -67,7 +67,14 @@ if (False) {
 
 ?>
 ```
-fdaga
+Reading through this php code, we can see that this is a command injection challenge where we can put commands into the the start query.
+Also we can see that if we somehow trigger False, the flag variable will appear in the source code.
+
+Reading the input part of the code, we see that there is a blacklist preventing us from typing any of those letters inside our commands and that our command must be less that 5 characters long.
+
+With this knowledge, I tried out some basic command injection stuff like l\s or l's' and it printed out that there was a flag.php and a index.php.
+With only 4 letters to type for our command, I knew that opening the flag.php file was an impossibility.
+
 
 Wrapping the flag with CTF{} we get:
 ```CTF{791b21ee6421993a8e25564227a816ee52e48edb437909cba7e1e80c0579b6be}```
