@@ -1,1 +1,28 @@
+#### Challenge
+I do not think that this API needs any sort of security testing as it only executes and retrieves the output of ID and PS commands.
+Flag format: CTF{sha256}
+
+Attachments: https://api.cyberedu.ro/v1/contest/dctf21/challenge/bf7cde20-89b7-11ec-b6ba-fdc8d6daa06e/download/2001
+#### Solution
+We are given a crashdump.zip file that we can extract into a crashdump.elf.
+
+From the description, it is hinting us that this challenge is something to do with memory and memory that gets rid of itself or deletes itself.
+Also, the name of the file is crashdump, so the tool we need for this challenge stands out.
+
+We will be using the tool ```volatility```, which is a tool that is good for memory forensics challenges.
+The download to the tool can be found at https://github.com/volatilityfoundation/volatility
+
+After the tool is setup, we can run the vo.py file using any version of python2 and use the -f option to supply our memory file.
+
+First, we want to use the ```imageinfo``` option to find the correct profile.
+![image]()
+
+We will choose the first profile in the list and use that for our next tests. (Win7SP1x64)
+
+We can extract the lsa secrets now using the ```lsadump``` option.
+![image]()
+
+We get the password:
+```Str0ngAsAR0ck!```
+
 
