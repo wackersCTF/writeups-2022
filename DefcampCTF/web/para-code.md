@@ -48,6 +48,7 @@ if (False) {
 
 ?>
 ```
+fdaga
 
 Wrapping the flag with CTF{} we get:
 ```CTF{791b21ee6421993a8e25564227a816ee52e48edb437909cba7e1e80c0579b6be}```
