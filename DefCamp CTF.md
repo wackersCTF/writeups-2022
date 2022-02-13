@@ -83,7 +83,6 @@ This part wasn't very fun for me, because I had to "bruteforce" through all the 
 Eventually I got to the command m4 which when doing ```?start=m4 *``` showed the $flag variable in the source code.
 
 Note: Sadly I didn't know what m4 actually did to trigger the if statement to a False and print the flag in the source code, but the m4 command processes macros in FILEs.
-
 Read more at: https://www.commandlinux.com/man-page/man1/m4.1.html
 
 Wrapping the flag with CTF{} we get:
