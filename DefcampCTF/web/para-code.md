@@ -5,25 +5,9 @@ Flag format: CTF{sha256}
 
 Attachments: 34.159.7.96:32210
 #### Solution
-We are given a crashdump.zip file that we can extract into a crashdump.elf.
 
-From the description, it is hinting us that this challenge is something to do with memory and memory that gets rid of itself or deletes itself.
-Also, the name of the file is crashdump, so the tool we need for this challenge stands out.
 
-We will be using the tool ```volatility```, which is a tool that is good for memory forensics challenges.
-The download to the tool can be found at https://github.com/volatilityfoundation/volatility
-
-After the tool is setup, we can run the vo.py file using any version of python2 and use the -f option to supply our memory file.
-
-First, we want to use the ```imageinfo``` option to find the correct profile.
-![image]()
-
-We will choose the first profile in the list and use that for our next tests. (Win7SP1x64)
-
-We can extract the lsa secrets now using the ```lsadump``` option.
-![image]()
-
-We get the password:
-```Str0ngAsAR0ck!```
+Wrapping the flag with CTF{} we get:
+```CTF{791b21ee6421993a8e25564227a816ee52e48edb437909cba7e1e80c0579b6be}```
 
 
