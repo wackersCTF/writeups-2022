@@ -3,7 +3,7 @@ I do not think that this API needs any sort of security testing as it only execu
 
 Flag format: CTF{sha256}
 
-Attachments: https://api.cyberedu.ro/v1/contest/dctf21/challenge/bf7cde20-89b7-11ec-b6ba-fdc8d6daa06e/download/2001
+Attachments: 34.159.7.96:32210
 #### Solution
 We are given a crashdump.zip file that we can extract into a crashdump.elf.
 
