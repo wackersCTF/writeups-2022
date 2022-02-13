@@ -1,5 +1,5 @@
 #### Challenge
-I do not think that this API needs any sort of security testing as it only executes and retrieves the output of ID and PS commands.
+I do not think that this API needs any sort of security testing as it only executes and retrieves the output of ID and PS commands. \n
 Flag format: CTF{sha256}
 
 Attachments: https://api.cyberedu.ro/v1/contest/dctf21/challenge/bf7cde20-89b7-11ec-b6ba-fdc8d6daa06e/download/2001
