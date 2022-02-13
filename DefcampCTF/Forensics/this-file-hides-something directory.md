@@ -1,5 +1,6 @@
 #### Challenge
 There is an emergency regarding this file. We need to extract the password ASAP. It's a crash dump, but our tools are not working. Please help us, time is not on our side.
+
 PS: Flag format is not standard.
 
 Attachments: https://api.cyberedu.ro/v1/contest/dctf21/challenge/bf7cde20-89b7-11ec-b6ba-fdc8d6daa06e/download/2001
@@ -15,12 +16,12 @@ The download to the tool can be found at https://github.com/volatilityfoundation
 After the tool is setup, we can run the vo.py file using any version of python2 and use the -f option to supply our memory file.
 
 First, we want to use the ```imageinfo``` option to find the correct profile.
-![image]()
+![imageinfo](https://user-images.githubusercontent.com/46347858/153773080-2e1d1268-14b4-4ce7-80af-e2cd67aded5d.PNG)
 
 We will choose the first profile in the list and use that for our next tests. (Win7SP1x64)
 
 We can extract the lsa secrets now using the ```lsadump``` option.
-![image]()
+![password](https://user-images.githubusercontent.com/46347858/153773086-cd374023-2f2b-4e74-941b-84dca2e931e0.PNG)
 
 We get the password:
 ```Str0ngAsAR0ck!```
