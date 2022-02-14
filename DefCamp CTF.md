@@ -78,6 +78,49 @@ Flags:
 3. Not solved
 4. DOYOUTHINKYOUHAVEIT
 
+## Ok!
+Our computer performance was altered by a malicious individual. We have managed to make a copy of the altered computer and we need immediately to obtain some answers regarding this file. Due to the stressful situation, one of our colleagues managed to write just a single word in his notebook: 
+
+Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook. Ook? Ook. Ook. Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook? Ook. Ook? Ook. Ook? Ook. Ook? Ook. Ook! Ook! Ook? Ook! Ook. Ook? Ook. Ook? Ook. Ook? Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook! Ook! Ook! Ook. Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook. Ook. Ook! Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. 
+
+Your input is needed on the following aspects and you should remember that wecracktheworlds is an important key in this process.
+
+Files are available at the following links:
+-   https://storage.googleapis.com/cyberedu-production/dctf22-ok-chall/unintended.zip.000
+-   https://storage.googleapis.com/cyberedu-production/dctf22-ok-chall/unintended.zip.001
+-   https://storage.googleapis.com/cyberedu-production/dctf22-ok-chall/unintended.zip.002
+
+1.  A message is received when the first task is completed. Please share it with us: (Points: 229)
+2. We know that the attacker attempted to download an infected image from one of his servers before launching the attack. Can you provide the file name? (Points: 50)
+3. We know that the attacker used a password to unrar the malicious scripts downloaded from his server. Can you provide its value? (Points: 50)
+4. We suspect that the Sample 5 script contains another malicious download link. Can you determine the address? (Points: 86)
+
+## Solution
+First, we start off with the Ook text in the challenge description. We see that Ook! is a joke programming language. Using a translator, the text ouputs "autopsy" which is a reference to the digital forensics tool. 
+
+Then, we download the three files. We try to extract the first zip file, but notice that it is an incomplete zip file. Using cat, we can combine or concatenate the three files. Unzipping the completed zip file gives us a .vmdk file. It is a virtual machine disk file developed by VMware. I tried to make an image with the .vmdk file, however the windows machine was broken and I could not access the files. 
+
+So, we resort to using autopsy.  We find that there are two drives: C:/ and D:/. The D:/ drive was more comprehensive and contained more valuable information. Using the File Analysis mode, we have access to all the files and folders in the drive. Inside the Users folder, there is a user named sunflower. Inside its Downloads folder, there is a suspicious folder named *Malicious-Powershell-Samples-master* with multiple subfolders. 
+
+In the README.txt file of the *Malicious-Powershell-Samples-master*, we see 
+```
+# Malicious-Powershell-Samples
+
+rarpass=infect
+
+```
+This looks like a password. 
+
+Inside Powershell Samples - Part 1/Sample 1 subfolder, we find a suspicious .jpg file named **p_1372hc5v1.jpg**. It is actually contains numbers and text.
+
+While part 4 of the challenge was not solved during the competition, we see a file named Powershell Samples - Part2.7z. Downloading and attempting to extract it with 7zip shows that Sample 5 is in this zip file. Unfortunately, the zip file was password protected and we could not crack it. 
+
+Flags:
+1. Not solved
+2. p_1372hc5v1.jpg
+3. infect
+4. Not solved
+
 ## para-code
 I do not think that this API needs any sort of security testing as it only executes and retrieves the output of ID and PS commands.
 
