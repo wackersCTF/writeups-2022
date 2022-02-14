@@ -141,6 +141,7 @@ Next, I went to try to exploit the if (False) part to get the $flag variable to 
 I knew that the input could only be 4 characters max, so I would have to have at max a 2 character command followed by a space and an asterisk after.
 
 This part wasn't very fun for me, because I had to "bruteforce" through all the 2 characters commands until I found a correct one.
+By bruteforce, I meant go through the commands that seemed valid in https://www.davekb.com/browse_computer_tips:linux_two_letter_commands:txt
 
 Eventually I got to the command m4 which when doing ```?start=m4 *``` showed the $flag variable in the source code.
 
