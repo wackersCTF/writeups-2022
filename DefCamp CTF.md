@@ -151,7 +151,7 @@ Wrapping the flag with CTF{} we get:
 ```CTF{791b21ee6421993a8e25564227a816ee52e48edb437909cba7e1e80c0579b6be}```
 
 ## this-file-hides-something
-Description: There is an emergency regarding this file. We need to extract the password ASAP. It's a crash dump, but our tools are not working. Please help us, time is not on our side.
+There is an emergency regarding this file. We need to extract the password ASAP. It's a crash dump, but our tools are not working. Please help us, time is not on our side.
 
 PS: Flag format is not standard.
 
@@ -178,3 +178,58 @@ We can extract the lsa secrets now using the ```lsadump``` option.
 
 We get the password:
 ```Str0ngAsAR0ck!```
+
+## zebra-lib
+ All these years of technological developments and I still haven’t seen a color photo of a zebra. Change my mind.
+
+ Flag format: CTF{sha256}
+
+ Attachments: 34.159.7.96:30441
+
+ ### Solution
+
+ This challenge is just another pwntools scripting challenge. We must connect to an IP address and decode texts using Base64 and zlib. The decoded text must be sent within a time period and there are five hundred encoded texts. Therefore, doing this manually is not ideal.  
+
+ Steps:
+ 1. Connect to IP address using pwntools
+ 2. Receive data using recvuntil
+ 3. Isolate the encoded text using split()
+ 4. Decode using Base64 and inflate using zlib
+ 5. Send plaintext using sendline()
+ 6. Repeat until flag
+
+CyberChef is helpful in identifying the encodings used. Also, the text was encoded using **url safe Base64** instead of standard Base64. If the text was decoded using standard Base64, zlib will not work. This minor detail caused me some trouble. 
+
+ Script
+ ```python
+ from pwn import *
+ import base64
+ import zlib
+
+ def decode_base64_and_inflate(b64string):
+ 	decoded_data = base64.urlsafe_b64decode(b64string)
+ 	return zlib.decompress(decoded_data)
+
+ connection = remote('34.159.7.96', 32358)
+
+ data = connection.recvuntil(b':')
+ data2 = str(data).split('\\r\\n')
+ print(f'ciphertext for 1: {data2[1]}')
+ workproof = decode_base64_and_inflate(data2[1])
+ connection.sendline(workproof)
+
+ counter = 2
+ while counter != 500: # 500 texts to decode
+ 	data = connection.recvuntil(b':')
+ 	data2 = str(data).split('\\r\\n')
+ 	print(f'ciphertext for {counter}: {data2[2]}')
+ 	workproof = decode_base64_and_inflate(data2[2])
+ 	connection.sendline(workproof)
+ 	counter += 1
+
+ while True: # for reading flag
+ 	data = connection.read()
+ 	print(data)
+ ```
+
+ Flag: ```CTF{a7550246d72f8c7946a9248b3b9eee93461ac30f53ac8ca9749c9590b4ed1a2b}```
