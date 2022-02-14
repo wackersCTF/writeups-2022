@@ -42,6 +42,42 @@ Flags:
 5. Not solved
 6. 4672
 
+## catch-me-if-you-can
+We need your technical expertise to analyze this Android project. We tried to compile it, no success, we tried to open it, no success, but we know for sure that the final product had to scope to deliver hidden messages to different attackers worldwide in a form of a mobile game. 
+
+Flag format: not standard
+
+Attachments: https://api.cyberedu.ro/v1/contest/dctf21/challenge/bd772bd0-8a4c-11ec-84f7-4917e4d507f7/download/2006
+
+### Solution
+
+I just went straight to the 4th question, since the competition was almost over and it seemed the most understandable and easiest to do.
+
+The question was ```Something is wrong with the SharedPreferences file. We didn't manage to understand the string value. Please share it with us.```
+
+The question asks us to look at the SharedPreferences file and taking a look at the options, it was clear it was talking about the SharedPreferences.java file.
+![stringthing](https://user-images.githubusercontent.com/46347858/153781418-66be7fdc-b7f5-491e-8a21-497a2ea8ab16.PNG)
+
+Looking at the file we see the string value that looks cryptic and not understandable that the question was talking about.
+I knew that we had to somehow decrypt this into a normal string, so I started looking for options.
+
+I couldn't think of any ciphers that looked like this, so I took a look at the SharedPreferences.java file again.
+
+Right about the cryptic string, I saw that it said '1337'.
+I thought about this for a while and got nothing, but then I searched 1337 code on google and it brought me to ```Leet Speak```
+
+I found a decoder for it by dcode.fr: https://www.dcode.fr/leet-speak-1337
+
+Putting the text in and decrypting, we get a more recognizable word, but some parts of it are still not as understable.
+
+But looking at the text, we can deduce the rest of the words and make the decoded string.
+
+Flags: 
+1. Not solved
+2. Not solved
+3. Not solved
+4. DOYOUTHINKYOUHAVEIT
+
 ## para-code
 I do not think that this API needs any sort of security testing as it only executes and retrieves the output of ID and PS commands.
 
@@ -115,7 +151,7 @@ Wrapping the flag with CTF{} we get:
 ```CTF{791b21ee6421993a8e25564227a816ee52e48edb437909cba7e1e80c0579b6be}```
 
 ## this-file-hides-something
-There is an emergency regarding this file. We need to extract the password ASAP. It's a crash dump, but our tools are not working. Please help us, time is not on our side.
+Description: There is an emergency regarding this file. We need to extract the password ASAP. It's a crash dump, but our tools are not working. Please help us, time is not on our side.
 
 PS: Flag format is not standard.
 
@@ -142,59 +178,3 @@ We can extract the lsa secrets now using the ```lsadump``` option.
 
 We get the password:
 ```Str0ngAsAR0ck!```
-
-
-## zebra-lib
-All these years of technological developments and I still haven’t seen a color photo of a zebra. Change my mind.
-
-Flag format: CTF{sha256}
-
-Attachments: 34.159.7.96:30441
-
-### Solution
-
-This challenge is just another pwntools scripting challenge. We must connect to an IP address and decode texts using Base64 and zlib. The decoded text must be sent within a time period and there are five hundred encoded texts. Therefore, doing this manually is not ideal.  
-
-Steps:
-1. Connect to IP address using pwntools
-2. Receive data using recvuntil
-3. Isolate the encoded text using split()
-4. Decode using Base64 and inflate using zlib
-5. Send plaintext using sendline()
-6. Repeat until flag
-
-CyberChef is helpful in identifying the encodings used. Also, the text was encoded using **url safe Base64** instead of standard Base64. If the text was decoded using standard Base64, zlib will not work. This minor detail caused me some trouble. 
-
-Script
-```python
-from pwn import *
-import base64
-import zlib
-
-def decode_base64_and_inflate(b64string):
-	decoded_data = base64.urlsafe_b64decode(b64string)
-	return zlib.decompress(decoded_data)
-
-connection = remote('34.159.7.96', 32358)
-
-data = connection.recvuntil(b':')
-data2 = str(data).split('\\r\\n')
-print(f'ciphertext for 1: {data2[1]}')
-workproof = decode_base64_and_inflate(data2[1])
-connection.sendline(workproof)
-
-counter = 2
-while counter != 500: # 500 texts to decode
-	data = connection.recvuntil(b':')
-	data2 = str(data).split('\\r\\n')
-	print(f'ciphertext for {counter}: {data2[2]}')
-	workproof = decode_base64_and_inflate(data2[2])
-	connection.sendline(workproof)
-	counter += 1
-
-while True: # for reading flag
-	data = connection.read()
-	print(data)
-```
-
-Flag: ```CTF{a7550246d72f8c7946a9248b3b9eee93461ac30f53ac8ca9749c9590b4ed1a2b}```
