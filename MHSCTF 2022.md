@@ -354,11 +354,12 @@ What is harder is working with stdin. stdin is essentially constant terminal out
 ```python
 from sys import stdin, stdout
 import math
+	
 def main():
     inputt = stdin
     out = stdout
-    counter = 0
-    numbers = ''
+    counter = 0 # number of problems solved
+    numbers = '' # store the number of problems to solve
     for i in inputt:
         if numbers == '':
             numbers = int(i)
