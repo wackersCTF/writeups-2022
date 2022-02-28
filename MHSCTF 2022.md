@@ -344,7 +344,12 @@ Notes:
 
 The math/logic part of this problem is just simple probabilities. To find the probability that it rains in any of the 6 hours, you first find the probability that it doesn't rain on any of the 6 days then subtract that from 1.
 
-What is harder is working with stdin. stdin is essentially constant terminal output, which means that you can't take a single line of input or just stop taking input sometime like ```input()```. The problem is we need the first line of input for the number of line inputs that we will receive. A solution is to use an if-else every iteration.
+
+where ```a, b, c,...``` is the probability that it will rain on the 1st, 2nd, 3rd,... days
+
+The probability of it raining on all 6 days is ```1-( (1-a)*(1-b)*(1-c)*(1-d)*(1-e)*(1-f) )```
+
+What is harder is working with stdin. stdin is essentially constant terminal output, which means that you can't take a single line of input or just stop taking input sometime like ```input()```. The problem is we need the first line of input for the number of line inputs that we will receive. A solution is to use an if-else every iteration. Though this seems inefficient, there really is no way around this (that I know of). The rest is just molding your output to what the problem requires.
 
 ```python
 from sys import stdin, stdout
