@@ -3,7 +3,7 @@
 - Feb 18 to Feb 25
 Ranking: 106/739 with 630 points
 
-Does not include all challenge writeups. Only two writeups from wyl3waK. 
+Does not include all challenge writeups. Only two writeups from wyl3waK. Cloudy was done by prince-of-tennis.
 
 ## Euler's Method - wyl3waK
 Naturally, your favorite class of the day is AP Calculus BC and you've recently been learning Euler's Method. Your teacher has had a lot on their plate, so they've just been using the same curve for your homework problems every day, y'(x) = x^2 - 6y^2, y(5) = 2. To simplify matters, you're going to write a program to automate this trivial task for you.
@@ -318,5 +318,57 @@ Websites I found helpful:
 - https://docs.python.org/3/library/dis.html
 - https://opensource.com/article/18/4/introduction-python-bytecode
 - https://towardsdatascience.com/understanding-python-bytecode-e7edaae8734d
-  
-  
+	
+	
+## Cloudy with a chance of probability - prince-of-tennis
+To help out your local meteorologist, you decide to write a sophisticated program that can determine the chance of rain for any given six hours. Hint: think about or's and and's in probability!
+
+For each input, you will receive a space-separated array of integers (each between 0 and 100) that represent the percent chance of rain for each hour in a six hour period. Your program should return the percent chance (rounded down to the nearest integer) that it rains during any of those six hours.
+
+Sample Input 1:
+5 93 83 28 100 8
+Sample Output 1:
+100
+
+Sample Input 2:
+26 13 4 16 28 30
+Sample Output 2:
+73
+
+Notes:
+
+    the inputs will be passed in (through stdin) separated by newlines; make sure your output (returned on stdout) is also separated by newlines
+    the first line of input will contain only one integer representing the number of additional lines of input you will receive
+
+### Solution
+
+The math/logic part of this problem is just simple probabilities. To find the probability that it rains in any of the 6 hours, you first find the probability that it doesn't rain on any of the 6 days then subtract that from 1.
+
+What is harder is working with stdin. stdin is essentially constant terminal output, which means that you can't take a single line of input or just stop taking input sometime like ```input()```. The problem is we need the first line of input for the number of line inputs that we will receive. A solution is to use an if-else every iteration.
+
+```python
+from sys import stdin, stdout
+import math
+def main():
+    inputt = stdin
+    out = stdout
+    counter = 0
+    numbers = ''
+    for i in inputt:
+        if numbers == '':
+            numbers = int(i)
+        else:
+            j = i.split(' ')
+            out.write(str(calc_p(j))+"\n")
+            counter += 1
+            if counter == numbers:
+                break
+def calc_p(a):
+    p=1
+    for i in range(len(a)):
+        a[i] = float(a[i])*0.01
+    for i in a:
+        p*=(1-i)
+    return(int(math.floor((1-p)*100)))
+main()
+```
