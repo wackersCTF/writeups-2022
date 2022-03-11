@@ -1,7 +1,7 @@
 # MHSCTF 2022
 - https://ctftime.org/event/1564
 - Feb 18 to Feb 25
-Ranking: 106/739 with 630 points
+- Ranking: 106/739 with 630 points
 
 Does not include all challenge writeups. Only two writeups from wyl3waK. Cloudy was done by prince-of-tennis.
 
