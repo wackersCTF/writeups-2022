@@ -20,11 +20,9 @@ int main() {
             if (column[j-1] > 0 && line1[j] == '-') {
                 counter--;
                 column[j-1] = 0;
-            }
-            
-    }
-
+            } 
+        }
     }
     cout << counter;
 }
-SEKAI{wysi_Wh3n_y0u_fuxx1ng_C_727727}
+// Flag: SEKAI{wysi_Wh3n_y0u_fuxx1ng_C_727727}
